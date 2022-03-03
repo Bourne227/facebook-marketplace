@@ -1,0 +1,123 @@
+#
+# CSE183 Assignment 8 Backend
+#
+
+openapi: '3.0.3'
+
+info:
+  description: CSE183 Assignment 8 Backend
+  version: 0.1.0
+  title: CSE183 Assignment 8 Backend
+
+servers:
+  - url: http://localhost:3010/v0
+
+paths:
+  /dummy:
+    get:
+      description: Dummy Endpoint
+      responses:
+        200:
+          description: Succesful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DummyResponse'
+        404:
+          description: Notfound
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /item:
+    get:
+      description: Dummy Endpoint
+      responses:
+        200:
+          description: Succesful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemResponse'
+        404:
+          description: Notfound
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Error:
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+      required:
+        - code
+        - message
+    ItemResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          dtype:
+            type: string
+          dvalue:
+            type: array
+            items:
+              type: object
+              properties:
+                price:
+                  type: string
+            #   $ref: '#/components/schemas/car'
+              
+    car:
+      type: object
+      properties:
+        brand:
+          type: string
+        color:
+          type: string
+        price:
+          type: string
+        sellerinfo:
+          type: string
+
+    houseing:
+      type: object
+      properties:
+        capacity:
+          type: string
+        price:
+          type: string
+        location:
+          type: string
+        sellerinfo:
+          type: string
+    
+    estuff:
+      type: object
+      properties:
+        brand:
+          type: string
+        mode:
+          type: string
+        price:
+          type: string
+        location:
+          type: string
+        sellerinfo:
+          type: string
+    DummyResponse:
+      properties:
+        message:
+          type: string
+      required:
+        - message
